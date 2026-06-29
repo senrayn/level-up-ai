@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* ===== Level Up Dark First Theme ===== */
+:root {
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #111113;
+  --bg-tertiary: #1A1A1E;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1A6;
+  --text-tertiary: #636366;
+  --accent: #6C5CE7;
+  --accent-secondary: #00D2FF;
+  --success: #34D399;
+  --warning: #FBBF24;
+  --danger: #F87171;
+  color-scheme: dark;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: #0A0A0B;
+  color: #FAFAFA;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
