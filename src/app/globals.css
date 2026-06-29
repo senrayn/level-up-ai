@@ -1,29 +1,43 @@
 @import "tailwindcss";
 
-/* ===== Level Up Dark First Theme ===== */
-:root {
-  --bg-primary: #0A0A0B;
-  --bg-secondary: #111113;
-  --bg-tertiary: #1A1A1E;
-  --text-primary: #FAFAFA;
-  --text-secondary: #A1A1A6;
-  --text-tertiary: #636366;
-  --accent: #6C5CE7;
-  --accent-secondary: #00D2FF;
-  --success: #34D399;
-  --warning: #FBBF24;
-  --danger: #F87171;
-  color-scheme: dark;
+/* ===== Level Up Design Tokens — must use @theme for Tailwind v4 ===== */
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --color-bg-primary: #0A0A0B;
+  --color-bg-secondary: #111113;
+  --color-bg-tertiary: #1A1A1E;
+
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1A6;
+  --color-text-tertiary: #636366;
+
+  --color-accent: #6C5CE7;
+  --color-accent-secondary: #00D2FF;
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-danger: #F87171;
 }
 
-html {
-  color-scheme: dark;
-}
+/* ===== Base Layer ===== */
 
-body {
-  background: #0A0A0B;
-  color: #FAFAFA;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: #0A0A0B;
+    color: #FAFAFA;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
 }
