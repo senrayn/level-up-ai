@@ -1,43 +1,60 @@
 @import "tailwindcss";
 
-/* ===== Level Up Design Tokens — must use @theme for Tailwind v4 ===== */
-
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-  --color-bg-primary: #0A0A0B;
-  --color-bg-secondary: #111113;
-  --color-bg-tertiary: #1A1A1E;
-
-  --color-text-primary: #FAFAFA;
-  --color-text-secondary: #A1A1A6;
-  --color-text-tertiary: #636366;
-
-  --color-accent: #6C5CE7;
-  --color-accent-secondary: #00D2FF;
-  --color-success: #34D399;
-  --color-warning: #FBBF24;
-  --color-danger: #F87171;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-primary: #6AA8E0;
+  --color-mint: #7EC8A0;
+  --color-soft-purple: #A9A3FF;
+  --color-text: #2B2F36;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  --color-sky-top: #EAF4FF;
+  --color-sky-mid: #F7FBFF;
+  --color-bg-deep: var(--color-sky-top);
+  --color-bg-primary: var(--color-sky-mid);
+  --color-bg-secondary: #F0F5FA;
+  --color-bg-card: rgba(255, 255, 255, 0.75);
+  --color-bg-glass: rgba(255, 255, 255, 0.65);
+  --color-text-primary: var(--color-text);
+  --color-text-heading: var(--color-text);
+  --color-accent: var(--color-mint);
+  --color-accent-glow: var(--color-mint);
+  --color-cyber: var(--color-primary);
+  --color-cyber-glow: var(--color-primary);
+  --color-neon: var(--color-mint);
+  --color-gold: var(--color-primary);
+  --color-danger: #E8A0A0;
+  --color-success: var(--color-mint);
+  --color-warning: var(--color-primary);
 }
 
-/* ===== Base Layer ===== */
-
 @layer base {
-  html {
-    color-scheme: dark;
-  }
-
+  html { color-scheme: light; }
   body {
-    background: #0A0A0B;
-    color: #FAFAFA;
+    background: linear-gradient(to bottom, #EAF4FF, #F7FBFF, #FFFFFF);
+    background-attachment: fixed;
+    color: var(--color-text);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    min-height: 100vh; overflow-x: hidden;
   }
+  /* NEVER hide svg or icons */
+  svg { opacity: 1; display: inline; }
+}
 
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 9999px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
+@layer utilities {
+  .anime-glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(120, 160, 220, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+    transition: all 0.25s ease-out;
+  }
+  .anime-glass-card:hover { border-color: rgba(120, 160, 220, 0.35); transform: translateY(-1px); }
+  .shadow-card { box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05); }
+  .soft-pulse { animation: soft-pulse 3s ease-in-out infinite; }
+  @keyframes soft-pulse { 0%,100%{opacity:1} 50%{opacity:.7} }
 }

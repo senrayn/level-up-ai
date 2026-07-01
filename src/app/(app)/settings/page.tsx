@@ -1,12 +1,5 @@
-import { PageContainer } from "@/components/layout/page-container"
-import { GlassCard } from "@/components/ui/glass-card"
-
-export default function Page() {
-  return (
-    <PageContainer maxWidth="narrow">
-      <GlassCard className="min-h-[300px] flex items-center justify-center">
-        <p className="text-text-tertiary">settings — Coming in Phase 2</p>
-      </GlassCard>
-    </PageContainer>
-  )
-}
+"use client"
+import { PageContainer } from "@/components/layout/page-container"; import { WorldHeader } from "@/components/layout/world-header"; import { GlassCard } from "@/components/ui/glass-card"
+import { motion } from "framer-motion"; import { Bell, Palette, Shield, Globe, User } from "lucide-react"
+const items=[{icon:User,label:"Profile",desc:"Name, avatar, details",color:"text-primary"},{icon:Bell,label:"Notifications",desc:"Commission reminders",color:"text-mint"},{icon:Palette,label:"Appearance",desc:"Theme and display",color:"text-soft-purple"},{icon:Shield,label:"Privacy",desc:"Guild Hall visibility",color:"text-primary"},{icon:Globe,label:"Language",desc:"Choose your realm",color:"text-mint"}]
+export default function HandbookPage(){return <PageContainer maxWidth="narrow"><WorldHeader title="Traveler Handbook" subtitle="Your personal grimoire."/><div className="space-y-3">{items.map((it,i)=>{const I=it.icon;return <motion.div key={it.label} initial={{opacity:0,x:-6}} animate={{opacity:1,x:0}} transition={{delay:.03+i*.04}}><GlassCard className="flex items-center gap-4 hover:bg-white/70 cursor-pointer"><div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50"><I className={`h-4 w-4 ${it.color}`}/></div><div className="flex-1"><h4 className="text-sm font-medium text-text">{it.label}</h4><p className="text-[11px] text-slate-400">{it.desc}</p></div><span className="text-slate-300">›</span></GlassCard></motion.div>})}</div></PageContainer>}

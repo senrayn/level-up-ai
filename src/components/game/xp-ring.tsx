@@ -1,52 +1,9 @@
 "use client"
-
 import { motion } from "framer-motion"
-
-interface XPRingProps {
-  progress: number // 0 to 1
-  size?: number
-  strokeWidth?: number
-  className?: string
-}
-
-export function XPRing({ progress, size = 120, strokeWidth = 8, className }: XPRingProps) {
-  const radius = (size - strokeWidth) / 2
-  const circumference = radius * 2 * Math.PI
-  const offset = circumference - progress * circumference
-
-  return (
-    <div className={className} style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
-        {/* Background ring */}
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth={strokeWidth}
-        />
-        {/* Progress ring */}
-        <motion.circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke="url(#xpGradient)"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        />
-        <defs>
-          <linearGradient id="xpGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#6C5CE7" />
-            <stop offset="100%" stopColor="#00D2FF" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  )
+interface P { progress: number; size?: number; strokeWidth?: number; className?: string }
+export function XPRing({ progress, size = 120, strokeWidth = 6, className }: P) {
+  const r = (size - strokeWidth) / 2; const c = r * 2 * Math.PI; const o = c - Math.min(Math.max(progress, 0), 1) * c
+  return <div className={className} style={{width:size,height:size}}><svg width={size} height={size} className="-rotate-90"><defs><linearGradient id="xpG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#6AA8E0"/><stop offset="100%" stopColor="#7EC8A0"/></linearGradient></defs>
+    <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth={strokeWidth}/>
+    <motion.circle cx={size/2} cy={size/2} r={r} fill="none" stroke="url(#xpG)" strokeWidth={strokeWidth} strokeLinecap="round" strokeDasharray={c} initial={{strokeDashoffset:c}} animate={{strokeDashoffset:o}} transition={{duration:.8,ease:"easeOut"}}/></svg></div>
 }

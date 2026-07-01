@@ -1,28 +1,7 @@
 "use client"
-
-import { GlassCard } from "@/components/ui/glass-card"
-import { AttributeBar } from "@/components/game/attribute-bar"
-import { mockAttributes } from "@/lib/mock-data"
-import type { AttributeName } from "@/types/game"
-
-const attributeNames: AttributeName[] = [
-  "knowledge",
-  "discipline",
-  "creativity",
-  "health",
-  "communication",
-  "strength",
-]
-
-export function AttributePanel() {
-  return (
-    <GlassCard>
-      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-text-tertiary">Attributes</h3>
-      <div className="space-y-3">
-        {attributeNames.map((attr) => (
-          <AttributeBar key={attr} attribute={attr} value={mockAttributes[attr]} max={100} />
-        ))}
-      </div>
-    </GlassCard>
-  )
-}
+import { GlassCard } from "@/components/ui/glass-card"; import { AttributeBar } from "@/components/game/attribute-bar"
+import { mockAttributes } from "@/lib/mock-data"; import type { AttributeName } from "@/types/game"
+import { Brain, Lightbulb, Heart, Palette, MessageCircle, Dumbbell } from "lucide-react"
+const icons: Record<AttributeName,{icon:typeof Brain;label:string;color:string}>={knowledge:{icon:Brain,label:"Knowledge",color:"#6AA8E0"},discipline:{icon:Lightbulb,label:"Discipline",color:"#7EC8A0"},creativity:{icon:Palette,label:"Creativity",color:"#A9A3FF"},health:{icon:Heart,label:"Health",color:"#7EC8A0"},communication:{icon:MessageCircle,label:"Communication",color:"#E0B0C0"},strength:{icon:Dumbbell,label:"Strength",color:"#D4A0A0"}}
+const ord:AttributeName[]=["knowledge","discipline","creativity","health","communication","strength"]
+export function AttributePanel(){return <GlassCard><h3 className="mb-4 text-sm font-semibold text-text">Attributes</h3><div className="space-y-2.5">{ord.map(a=>{const{icon:Ic,label,color}=icons[a];return <div key={a} className="flex items-center gap-2.5"><div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg" style={{background:`${color}20`}}><Ic className="h-3.5 w-3.5" style={{color}}/></div><div className="flex-1 min-w-0"><div className="flex items-center justify-between mb-0.5"><span className="text-[11px] font-medium text-slate-600">{label}</span><span className="text-[11px] font-bold tabular-nums" style={{color}}>{mockAttributes[a]}</span></div><AttributeBar attribute={a} value={mockAttributes[a]} max={100} compact/></div></div>})}</div></GlassCard>}

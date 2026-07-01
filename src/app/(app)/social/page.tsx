@@ -1,12 +1,11 @@
-import { PageContainer } from "@/components/layout/page-container"
-import { GlassCard } from "@/components/ui/glass-card"
+"use client"
+import { PageContainer } from "@/components/layout/page-container"; import { WorldHeader } from "@/components/layout/world-header"; import { GlassCard } from "@/components/ui/glass-card"
+import { motion } from "framer-motion"; import { Users, Swords, Star, Search, User } from "lucide-react"
 
-export default function Page() {
-  return (
-    <PageContainer maxWidth="narrow">
-      <GlassCard className="min-h-[300px] flex items-center justify-center">
-        <p className="text-text-tertiary">social — Coming in Phase 2</p>
-      </GlassCard>
-    </PageContainer>
-  )
-}
+const advs=[{name:"Luna",title:"Code Mage",level:18,online:true,quote:"Debugging is an art form."},{name:"Kai",title:"Sword Dancer",level:22,online:true,quote:"One rep at a time."},{name:"Nova",title:"Star Scholar",level:15,online:false,quote:"Knowledge is the ultimate weapon."},{name:"Rin",title:"Wild Blossom",level:25,online:true,quote:"Growth happens outside comfort."}]
+
+export default function GuildHallPage(){return <PageContainer maxWidth="narrow">
+  <WorldHeader title="Guild Hall" subtitle="No hero walks alone. Find your fellowship."/>
+  <motion.div initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:.05}} className="grid grid-cols-3 gap-3 mb-6">{[{icon:Users,label:"Adventurers",value:"1,284"},{icon:Swords,label:"Active Quests",value:"342"},{icon:Star,label:"Guild Rank",value:"Top 10%"}].map(s=>{const I=s.icon;return <GlassCard key={s.label} className="flex items-center gap-3 py-3"><div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary/10"><I className="h-4 w-4 text-primary"/></div><div><p className="text-[11px] text-slate-400">{s.label}</p><p className="text-base font-semibold text-text">{s.value}</p></div></GlassCard>})}</motion.div>
+  <motion.div initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:.1}} className="mb-5"><div className="flex items-center gap-3 rounded-2xl bg-white/50 border border-slate-200/40 px-4 py-3"><Search className="h-4 w-4 text-slate-400"/><input placeholder="Search adventurers..." className="flex-1 bg-transparent text-sm text-slate-600 placeholder-slate-300 outline-none"/></div></motion.div>
+  <motion.div initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:.15}} className="space-y-3">{advs.map(a=><GlassCard key={a.name} className="flex items-center gap-4"><div className="relative"><div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center"><User className="h-5 w-5 text-primary"/></div>{a.online&&<span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-mint border-2 border-white"/>}</div><div className="flex-1 min-w-0"><div className="flex items-baseline gap-2"><h4 className="text-sm font-semibold text-text">{a.name}</h4><span className="text-[11px] text-slate-400">Lv.{a.level}</span></div><p className="text-[11px] text-slate-500">{a.title}</p><p className="mt-0.5 text-[12px] text-slate-400 italic">&ldquo;{a.quote}&rdquo;</p></div><button className="flex-shrink-0 rounded-xl bg-primary/10 px-4 py-2 text-[11px] font-medium text-primary hover:bg-primary/20">Team Up</button></GlassCard>)}</motion.div></PageContainer>}
